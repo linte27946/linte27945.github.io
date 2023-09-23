@@ -2,50 +2,7 @@
 <html>
 <head>
   <title>个人博客</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      background-color: #333;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 32px;
-    }
-
-    nav {
-      background-color: #f5f5f5;
-      padding: 10px;
-      text-align: center;
-    }
-
-    nav a {
-      color: #333;
-      text-decoration: none;
-      margin: 0 10px;
-    }
-
-    main {
-      padding: 20px;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-
-    footer {
-      background-color: #333;
-      color: #fff;
-      padding: 20px;
-      text-align: center;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="css/index.css">
 </head>
 <body>
   <header>
@@ -64,14 +21,25 @@
     <p>这里是我记录生活、技术和思考的地方。</p>
     <h3>最新博文</h3>
     <ul>
-      <li><a href="#">文章标题1</a></li>
+      <div class="inline-block">
+		  <a href="html/Docker.html" target="_blank">
+			  <img src="./img/index_picture/docker.png" alt="Docker学习笔记">
+		  </a>
+		  </div>
+		  <div class="inline-block">
+		  		  <a href="#" target="_blank">
+		  			  <img src="./img/index_picture/docker.png" alt="Docker学习笔记">
+		  		  </a>
+		  		  </div>
+	  <h3 style="padding-left:50px">docker学习笔记</h3>
+	  
       <li><a href="#">文章标题2</a></li>
       <li><a href="#">文章标题3</a></li>
     </ul>
   </main>
 
   <footer>
-    &copy; 2023 个人博客 | 设计：Your Name
+    &copy; 2023 个人博客
   </footer>
 </body>
 </html>
