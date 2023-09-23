@@ -1,0 +1,13 @@
+body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .left-align {
+      margin-left: 100px; /* 调整此处的数值以平移页面内容 */
+      text-align: left;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }

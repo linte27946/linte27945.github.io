@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>个人博客</title>
+    <link rel="stylesheet" type="text/css" href="../css/wordstyle.css">
+</head>
+<body>
+  <div class="left-align">
+	  <h2 id="下载docker">下载Docker</h2>
+	  <p>更新yum包：yum update -y</p>
+	  <p>安装所需要的软件包：yum install -y yum-utils
+	  device-mapper-persistent-data lvm2</p>
+	  <p>设置yum源：yum-config-manager –add-repo
+	  https://download.docker.com/linux/centos/docker-ce.repo</p>
+	  <p>安装：yum install docker-ce</p>
+	  <p>查看版本：docker -v</p>
+	  <h2 id="docker相关指令">Docker相关指令</h2>
+	  <h3 id="一服务相关命令">一、服务相关命令</h3>
+	  <p>启动命令：systemctl start docker</p>
+	  <p>停止docker: systemctl stop docker</p>
+	  <p>查看docker服务状态：systemctl status docker</p>
+	  <p>重启docker ：systemctl restart docker</p>
+	  <p>开机启动docker:systemctl enable docker</p>
+	  <h3 id="二镜像相关命令">二、镜像相关命令</h3>
+	  <p>查看本地有哪些镜像文件：docker images</p>
+	  <p>搜索镜像：docker search xxx //xxx为镜像名称</p>
+	  <h5 id="镜像创建的三种方法">镜像创建的三种方法：</h5>
+	  <p>1、基于官方提供的镜像</p>
+	  <p>下载镜像：docker pull xxx
+	  //默认为最新版本，如果选择版本直接加在后面docker pull xxx:5.0</p>
+	  <p>2、使用Dockerfile</p>
+	  <p><a
+	  href="https://www.cnblogs.com/lienhua34/p/5170335.html" target="_blank">Dockerfile创建自定义Docker镜像以及CMD与ENTRYPOINT指令的比较
+	 </a></p>
+	  <p>示例<img
+	  src="../img/file_picture/dockerfile.png"
+	  alt="image-20230921101717994" /></p>
+	  <p>删除镜像：docker rmi xxx //xxx为image ID</p>
+	  <p>删除所有镜像：docker rmi `docker images -q`</p>
+	  <h3 id="三容器相关命令">三、容器相关命令</h3>
+	  <p>创建并启动容器：docker run -it –name=xxx centeros:7 /bin/bash</p>
+	  <p>//-i表示一直运行 ; -t分配伪终端用于接受命令 ; -name=xxx 取名字为xxx
+	  ；/bin/bash打开shell脚本</p>
+	  <p>​ docker run -id –name=lt centeros:7 /bin/bash</p>
+	  <p>//d表示后台运行容器，不打开容器</p>
+	  <p>退出容器：exit</p>
+	  <p>查看正在运行的容器：docker ps //查看所有容器：docker ps -a</p>
+	  <p>进入正在运行的容器：docker exec -it xxx /bin/bash //xxx为容器名字</p>
+	  <p>停止容器：docker stop xxx //xxx为名字</p>
+	  <p>删除容器：docker rm xxx //xxx为名字</p>
+	  <p>删除所有容器：docker rm `docker ps -aq`
+	  //无法将正在运行的容器删除</p>
+	  <p>查看容器信息：docker inspect xxx //xxx为名字</p>
+	  <h2 id="数据卷相关知识">数据卷相关知识</h2>
+	  <h5 id="一数据卷概念">一、数据卷概念</h5>
+	  <p>1、数据卷是宿主机中的一个文件或目录，绑定容器后对其修改会同步到容器上</p>
+	  <p>2、一个数据卷可以挂载多个容器</p>
+	  <p>3、一个容器可以被多个数据卷挂载</p>
+	  <h5 id="二配置数据卷">二、配置数据卷</h5>
+	  <p>创建启动容器时使用-v参数</p>
+	  <p>docker run -it –name=xxx -v /root/data:/root/data_container
+	  centeros:7 /bin/bash</p>
+	  <p>//
+	  /root/data:/root/data_container表示将当前的data目录挂在到容器的/root/data_container下</p>
+	  <h5
+	  id="三两个容器挂载同一个数据卷实现两个容器数据交换">三、两个容器挂载同一个数据卷实现两个容器数据交换</h5>
+	  <h5 id="四数据卷容器">四、数据卷容器</h5>
+	  <p>将两个容器挂在到另一个容器中</p>
+	  <p>1、创建并启动c3数据卷容器，使用-v参数设置数据卷</p>
+	  <p>docker run -it –name=c3 -v /volume centos:7 /bin/bash</p>
+	  <p>//-v /volume
+	  没有指定宿主机的数据卷目录，docker会自动分配一个目录，可使用docker
+	  inspect c3查看 (mounts中 )</p>
+	  <p>2、创建启动c1，c2容器，使用–vloumes-from参数设置数据卷</p>
+	  <p>docker run -it –name=c1 –volumes-from c3 centos:7 /bin/bash</p>
+	  <p>docker run -it –name=c2 –volumes-from c3 centos:7 /bin/bash</p>
+	  <h2 id="docker部署mysql">Docker部署mysql</h2>
+	  <p>在Docker容器中部署mysql，并通过外部mysql客户端操作mysql Server</p>
+	  <p>1、搜索MySQL镜像</p>
+	  <p>2、拉取MySQL镜像</p>
+	  <p>3、创建容器</p>
+	  <p>4、操作容器中的mysql（采用端口映射方式，类似于容器卷）</p>
+    <!-- 在这里放置您的内容 -->
+    <h2>将HTML页面左对齐显示</h2>
+    <p>这是一个左对齐显示的HTML页面示例。</p>
+  </div>
+</body>
+</html>
